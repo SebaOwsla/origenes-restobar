@@ -44,7 +44,7 @@ interface Producto {
   imagen: string;
   tipo: Tipo;
   categoria: string; // subcategoría
-}
+}8
 
 const formatCLP = (precio?: number | null) => {
   if (!precio) return "";

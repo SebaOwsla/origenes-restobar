@@ -1,0 +1,114 @@
+@import './assets/theme.css';
+
+@font-face {
+  font-family: "RelatePersonalUse";
+  src: url("./assets/fonts/RelatePersonalUse.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ Todo media que pueda salirse, se ajusta */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ⚠️ NO sobrescribir .container (Bootstrap lo usa) */
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ===============================
+   SLIDER ORÍGENES
+   =============================== */
+
+.origenes-slider {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto 32px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.origenes-slider__frame {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(230, 211, 163, 0.20);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+  background: rgba(20, 22, 24, 0.35);
+}
+
+.origenes-slider__img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  display: block;
+  animation: sliderFade 300ms ease;
+}
+
+@keyframes sliderFade {
+  from { opacity: 0.6; transform: scale(1.015); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.origenes-slider__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 211, 163, 0.35);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--gold2);
+  font-size: 30px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 120ms ease, filter 120ms ease;
+  z-index: 2;
+}
+
+.origenes-slider__btn:hover {
+  transform: translateY(-50%) scale(1.05);
+  filter: brightness(1.2);
+}
+
+.origenes-slider__btn--left { left: 12px; }
+.origenes-slider__btn--right { right: 12px; }
+
+@media (max-width: 576px) {
+  .origenes-slider__img { height: 380px; }
+  .origenes-slider__btn {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+}

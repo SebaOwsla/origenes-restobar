@@ -1,0 +1,786 @@
+:root {
+  --bg: #0b0c0d;
+  --panel: rgba(20, 22, 24, .78);
+  --panel2: rgba(26, 29, 31, .85);
+  --green: #5f705f;
+  --green2: #3f4c41;
+  --gold: #cbb37a;
+  --gold2: #e6d3a3;
+  --text: #f2f2f2;
+  --muted: rgba(242, 242, 242, .72);
+  --border: rgba(203, 179, 122, .22);
+
+  /* Dorado elegante */
+  --gold-soft: rgba(203, 179, 122, .45);
+  --gold-line: rgba(203, 179, 122, .65);
+  --gold-glow: rgba(203, 179, 122, .25);
+
+  /* fuentes */
+  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-title: "RelatePersonalUse", serif;
+}
+
+/* =========================
+   BASE
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================
+   TIPOGRAFÍA GLOBAL
+   ========================= */
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.2px;
+  color: var(--text);
+}
+
+/* Títulos */
+.elegant-title,
+.section-title,
+.navbar-brand,
+.brand-text {
+  font-family: var(--font-title);
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+
+/* Subtítulos */
+.elegant-subtitle {
+  font-family: var(--font-body);
+}
+
+/* Navbar links */
+.elegant-navbar .nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.4px;
+}
+
+/* Botones */
+.elegant-btn,
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   DESCRIPCIONES / TEXTO NORMAL
+   ========================= */
+p,
+.section-box p,
+.elegant-card p,
+.elegant-product p,
+.card-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* =========================
+   NAVBAR ELEGANTE
+   ========================= */
+.elegant-navbar {
+  background: rgba(15, 17, 19, .85) !important;
+  backdrop-filter: blur(10px);
+
+  border-bottom: 2px solid var(--gold-line);
+  box-shadow:
+    0 1px 0 rgba(203, 179, 122, .35),
+    0 4px 14px var(--gold-glow);
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  position: sticky;
+  top: 0;
+  z-index: 3000;
+
+  --bs-navbar-color: rgba(242, 242, 242, 0.92);
+  --bs-navbar-hover-color: #e6d3a3;
+  --bs-navbar-active-color: #e6d3a3;
+  --bs-navbar-brand-color: #e6d3a3;
+  --bs-navbar-brand-hover-color: #e6d3a3;
+}
+
+.elegant-navbar .navbar-collapse {
+  z-index: 3001;
+}
+
+.elegant-navbar .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold2) !important;
+  font-weight: 900;
+  letter-spacing: .4px;
+}
+
+.elegant-navbar .brand-text {
+  color: var(--gold2) !important;
+}
+
+.elegant-navbar .brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* evita reglas globales que estiran imágenes */
+.elegant-navbar img {
+  max-width: none !important;
+}
+
+.elegant-navbar .nav-link,
+.elegant-navbar .navbar-nav .nav-link {
+  color: rgba(242, 242, 242, 0.92) !important;
+  font-weight: 600;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: inline-block !important;
+}
+
+.elegant-navbar .nav-link:hover {
+  color: var(--gold2) !important;
+}
+
+.elegant-navbar .nav-link.active {
+  color: var(--gold2) !important;
+  border-bottom: 2px solid var(--gold2);
+}
+
+.elegant-navbar .navbar-toggler {
+  border-color: rgba(230, 211, 163, .35);
+}
+
+/* ✅ SOLO CAMBIA EL COLOR DE LAS 3 LÍNEAS DEL HAMBURGUESA */
+.elegant-navbar .navbar-toggler-icon {
+  filter: none !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(230,211,163,0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Botón nav */
+.elegant-nav-btn {
+  background: linear-gradient(135deg, var(--gold2), var(--gold)) !important;
+  color: #101214 !important;
+  font-weight: 800;
+  border-radius: 12px;
+  border: none !important;
+  padding: 8px 14px;
+}
+
+.elegant-nav-btn:hover {
+  filter: brightness(1.05);
+}
+
+/* Badge carrito */
+.cart-badge {
+  background: var(--gold);
+  color: #101214;
+  font-weight: 900;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto !important;
+  }
+
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: row !important;
+    gap: 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .elegant-navbar .navbar-nav {
+    gap: 10px;
+  }
+
+  .elegant-navbar .navbar-collapse {
+    background: rgba(15, 17, 19, .92);
+    padding: 10px 12px;
+    border-radius: 14px;
+    margin-top: 10px;
+    border: 1px solid var(--gold-soft);
+  }
+}
+
+/* =========================
+   FONDO GENERAL ELEGANTE
+   ========================= */
+.elegant-bg {
+  min-height: 100vh;
+  color: var(--text);
+  overflow-x: hidden;
+  background:
+    radial-gradient(900px 520px at 50% 25%, rgba(95, 112, 95, .35), transparent 60%),
+    radial-gradient(700px 420px at 50% 80%, rgba(203, 179, 122, .18), transparent 60%),
+    linear-gradient(180deg, #070809, var(--bg));
+}
+
+.elegant-wrap {
+  padding: 32px 16px;
+}
+
+.elegant-card {
+  max-width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--gold-soft);
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .45);
+  backdrop-filter: blur(10px);
+}
+
+.elegant-title {
+  color: var(--gold2);
+  letter-spacing: .3px;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.elegant-subtitle {
+  color: var(--muted);
+}
+
+.elegant-product {
+  max-width: 100%;
+  background: var(--panel2);
+  border: 1px solid var(--gold-soft);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .35);
+}
+
+.elegant-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  color: #101214;
+  background: linear-gradient(135deg, var(--gold2), var(--gold));
+  border: 1px solid rgba(230, 211, 163, .55);
+  box-shadow: 0 12px 26px rgba(203, 179, 122, .22);
+}
+
+.elegant-btn:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+.section-title {
+  color: var(--gold2);
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+}
+
+.section-box {
+  max-width: 100%;
+  background: var(--panel2);
+  border: 1px solid var(--gold-soft);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+/* Ajuste fino móvil */
+@media (max-width: 576px) {
+  .elegant-wrap {
+    padding: 20px 12px;
+  }
+
+  .elegant-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+
+  .section-box {
+    padding: 14px;
+  }
+
+  p,
+  .section-box p,
+  .elegant-card p,
+  .elegant-product p,
+  .card-text {
+    font-size: 0.90rem;
+  }
+}
+
+/* =========================
+   REDES SOCIALES
+   ========================= */
+.social-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+  border-radius: 14px;
+
+  background: var(--panel);
+  border: 1px solid var(--gold-soft);
+
+  color: var(--text) !important;
+  text-decoration: none !important;
+
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .35);
+  backdrop-filter: blur(8px);
+
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-2px);
+  background: var(--panel2);
+  border-color: var(--gold-line);
+}
+
+.social-icon {
+  font-size: 1.35rem;
+  color: var(--gold);
+}
+
+/* BOTÓN "VER RESEÑAS" */
+.elegant-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 12px;
+
+  background: rgba(203, 179, 122, .12);
+  border: 1px solid var(--gold-soft);
+
+  color: var(--gold) !important;
+  text-decoration: none !important;
+  font-weight: 800;
+
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.elegant-link:hover {
+  transform: translateY(-2px);
+  background: rgba(203, 179, 122, .18);
+  border-color: var(--gold-line);
+}
+
+/* =========================
+   CARTA / PRODUCTOS
+   ========================= */
+.menu-filter {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--gold-soft);
+  background: rgba(203, 179, 122, .10);
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.menu-filter:hover {
+  transform: translateY(-1px);
+  background: rgba(203, 179, 122, .16);
+  border-color: var(--gold-line);
+}
+
+.menu-filter.is-active {
+  background: linear-gradient(135deg, var(--gold2), var(--gold));
+  color: #101214;
+  border-color: rgba(230, 211, 163, .55);
+}
+
+/* ✅ subfiltros: más compactos */
+.menu-filter--sub {
+  font-size: 0.92rem;
+  padding: 9px 12px;
+}
+
+/* Layout subfiltros: móvil ordenado */
+.menu-subfilters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 576px) {
+  .menu-subfilters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .menu-filter.menu-filter--sub {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  .menu-filter {
+    font-size: 0.9rem;
+    padding: 9px 14px;
+  }
+}
+
+.menu-card {
+  background: var(--panel2);
+  border: 1px solid var(--gold-soft);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, .35);
+}
+
+.menu-card__imgWrap {
+  position: relative;
+  height: 490px;
+  /* antes estaba en 180px */
+  overflow: hidden;
+}
+
+.menu-card__imgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 🔥 clave */
+  display: block;
+}
+
+.menu-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .4px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  backdrop-filter: blur(8px);
+}
+
+.pill-comida {
+  background: rgba(95, 112, 95, .25);
+  color: var(--gold2);
+}
+
+.pill-tragos {
+  background: rgba(203, 179, 122, .18);
+  color: var(--gold2);
+}
+
+.pill-cervezas {
+  background: rgba(63, 76, 65, .35);
+  color: var(--gold2);
+}
+
+.menu-card__body {
+  padding: 14px;
+}
+
+.menu-card__title {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+  color: var(--gold2);
+  font-family: var(--font-body);
+  font-weight: 900;
+}
+
+.menu-card__desc {
+  margin: 0 0 12px 0;
+  color: var(--muted);
+  font-size: .92rem;
+  min-height: 44px;
+}
+
+.menu-card__desc.muted {
+  opacity: .55;
+}
+
+.menu-card__price {
+  font-weight: 1000;
+  color: var(--text);
+  font-size: 1.05rem;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(203, 179, 122, .38);
+}
+
+/* =========================
+   BOTÓN "VER LA CARTA"
+   ========================= */
+.carta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  max-width: 520px;
+  width: 100%;
+  padding: 14px 16px;
+
+  /* ✅ importante: tenía hover con border-color pero sin border */
+  border: 1px solid var(--gold-soft);
+  border-radius: 16px;
+
+  background: rgba(203, 179, 122, .06);
+
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+
+  text-decoration: none !important;
+  color: var(--gold) !important;
+
+  cursor: pointer;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease, filter .2s ease;
+}
+
+.carta-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-line);
+  background: rgba(203, 179, 122, .10);
+  filter: brightness(1.03);
+}
+
+.carta-btn:active {
+  transform: translateY(0px);
+}
+
+.carta-icon {
+  font-size: 1.2rem;
+  color: var(--gold);
+}
+
+/* =========================
+   THEME TOGGLE (FAB)
+   ========================= */
+.theme-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 86px;
+  /* espacio por footer fijo */
+  z-index: 5000;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 14px;
+  border-radius: 999px;
+
+  background: rgba(20, 22, 24, .85);
+  border: 1px solid var(--gold-soft);
+  color: var(--text);
+
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+  backdrop-filter: blur(10px);
+
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: .3px;
+
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.theme-fab:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  border-color: var(--gold-line);
+}
+
+.theme-fab:active {
+  transform: translateY(0px);
+}
+
+.theme-fab__icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.theme-fab__text {
+  font-size: .92rem;
+}
+
+/* móvil: solo ícono */
+@media (max-width: 576px) {
+  .theme-fab {
+    bottom: 92px;
+    padding: 12px;
+  }
+
+  .theme-fab__text {
+    display: none;
+  }
+}
+
+/* ===============================
+   MODO CLARO ELEGANTE (MARFIL)
+   Activa con: body.theme-light
+   =============================== */
+body.theme-light {
+  /* marfil elegante (no blanco puro) */
+  --bg: #f3efe7;
+
+  /* paneles */
+  --panel: rgba(255, 255, 255, .90);
+  --panel2: rgba(255, 255, 255, .96);
+
+  /* texto */
+  --text: #1b1b1b;
+  --muted: rgba(27, 27, 27, .70);
+
+  /* dorados sobrios */
+  --gold: #9b7a3b;
+  --gold2: #b8934a;
+
+  --border: rgba(30, 30, 30, .10);
+  --gold-soft: rgba(155, 122, 59, .25);
+  --gold-line: rgba(155, 122, 59, .45);
+  --gold-glow: rgba(155, 122, 59, .18);
+}
+
+/* Fondo general en claro */
+body.theme-light .elegant-bg {
+  background:
+    radial-gradient(900px 520px at 50% 20%, rgba(95, 112, 95, .14), transparent 60%),
+    radial-gradient(700px 420px at 50% 85%, rgba(155, 122, 59, .12), transparent 60%),
+    linear-gradient(180deg, #ffffff, var(--bg));
+}
+
+/* Navbar legible en claro */
+body.theme-light .elegant-navbar {
+  background: rgba(255, 255, 255, .92) !important;
+  border-bottom: 2px solid var(--gold-line);
+}
+
+body.theme-light .elegant-navbar .nav-link,
+body.theme-light .elegant-navbar .navbar-nav .nav-link {
+  color: rgba(27, 27, 27, .92) !important;
+}
+
+/* Footer legible en claro */
+body.theme-light footer {
+  background: rgba(255, 255, 255, .92);
+  color: rgba(27, 27, 27, .92);
+}
+
+body.theme-light footer a {
+  color: rgba(27, 27, 27, .92);
+}
+
+/* FAB en claro */
+body.theme-light .theme-fab {
+  background: rgba(255, 255, 255, .92);
+  color: rgba(27, 27, 27, .92);
+  border-color: var(--gold-soft);
+}
+
+/* ===============================
+   MODO CLARO MÁS ELEGANTE (SIN TOCAR SOMBRAS DE CARDS)
+   PÉGALO AL FINAL DEL theme.css
+   =============================== */
+
+body.theme-light {
+  /* Marfil brillante elegante */
+  --bg: #f7f3ea;
+
+  /* Paneles quedan iguales (NO TOCAMOS sombras de cards) */
+  --panel: rgba(255, 255, 255, .92);
+  --panel2: rgba(255, 255, 255, .96);
+
+  /* Texto */
+  --text: #151515;
+  --muted: rgba(21, 21, 21, .70);
+
+  /* Dorado champagne más fino */
+  --gold: #9b7427;
+  --gold2: #c3a25f;
+
+  --border: rgba(20, 20, 20, .10);
+  --gold-soft: rgba(155, 116, 39, .22);
+  --gold-line: rgba(155, 116, 39, .40);
+  --gold-glow: rgba(195, 162, 95, .22);
+}
+
+/* ✅ SOLO FONDO: más brillante con reflejos */
+body.theme-light .elegant-bg {
+  background:
+    /* reflejo superior (tipo “luz de vitrina”) */
+    radial-gradient(900px 500px at 50% 0%,
+      rgba(255, 255, 255, .95) 0%,
+      rgba(255, 255, 255, .35) 35%,
+      transparent 70%),
+
+    /* halo dorado suave */
+    radial-gradient(900px 520px at 50% 22%,
+      rgba(195, 162, 95, .22),
+      transparent 62%),
+
+    /* verde sutil para mantener identidad */
+    radial-gradient(750px 460px at 18% 28%,
+      rgba(95, 112, 95, .14),
+      transparent 62%),
+
+    /* brillo lateral */
+    radial-gradient(680px 420px at 88% 70%,
+      rgba(255, 255, 255, .60),
+      transparent 70%),
+
+    /* base */
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 70%);
+}
+
+/* ✅ Navbar en claro más premium sin tocar cards */
+body.theme-light .elegant-navbar {
+  background: rgba(255, 255, 255, .90) !important;
+  border-bottom: 1px solid rgba(155, 116, 39, .22);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, .10),
+    0 1px 0 rgba(255, 255, 255, .85) inset;
+  backdrop-filter: blur(14px);
+}
+
+body.theme-light .elegant-navbar .nav-link,
+body.theme-light .elegant-navbar .navbar-nav .nav-link {
+  color: rgba(21, 21, 21, .92) !important;
+}
+
+/* ✅ Footer claro elegante */
+body.theme-light footer {
+  background: rgba(255, 255, 255, .92);
+  color: rgba(21, 21, 21, .92);
+  border-top: 1px solid rgba(155, 116, 39, .18);
+}
+
+body.theme-light footer a {
+  color: rgba(21, 21, 21, .92);
+}
+
+/* ✅ Botón flotante se ve pro */
+body.theme-light .theme-fab {
+  background: rgba(255, 255, 255, .86);
+  color: rgba(21, 21, 21, .92);
+  border: 1px solid rgba(155, 116, 39, .25);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, .14);
+  backdrop-filter: blur(14px);
+}

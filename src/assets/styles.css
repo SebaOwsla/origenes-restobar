@@ -1,0 +1,139 @@
+
+body {
+  background-color: #0b0c0d !important;
+  font-family: var(--font-body) !important; /* ✅ antes estaba Poppins */
+  color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 80px;
+}
+
+
+.navbar-old {
+  background-color: #3a1600;
+  padding: 0px 20px;
+}
+
+.navbar-old .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-old .nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-old a {
+  text-decoration: none;
+  color: #fffcfa;
+  font-weight: 500;
+}
+.navbar-old a:hover {
+  color: #e98b47;
+}
+
+/* ======== TARJETAS (RENOMBRADAS) ======== */
+.custom-card {
+  background-color: #5d4037;
+  color: aliceblue;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.custom-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ======== BOTONES (RENOMBRADOS) ======== */
+.custom-btn {
+  background-color: #e98b47 !important;
+  border: none;
+  color: #000;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.custom-btn:hover {
+  background-color: #f4a261 !important;
+  color: #2f2f2f !important;
+}
+
+/* ======== DETALLE DE PRODUCTO (se mantiene) ======== */
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 40px 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(26, 29, 31, 0.85);
+  padding: 50px;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.product-detail-img {
+  width: 350px;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.product-detail-info {
+  max-width: 400px;
+}
+
+/* ======== FOOTER ======== */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(15, 17, 19, 0.85);
+  color: aliceblue;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(203, 179, 122, 0.18);
+}
+
+footer a {
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: #e6d3a3;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .product-detail {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+/* ======== IMAGENES MENU CARD ======== */
+
+.menu-card__imgWrap {
+  height: 150px; /* 🔥 controla el tamaño aquí */
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.menu-card__imgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* mantiene proporción sin deformar */
+  display: block;
+}

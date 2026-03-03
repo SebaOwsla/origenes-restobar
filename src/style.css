@@ -1,0 +1,17 @@
+body {
+    background-color: (#e4e4e4);
+}
+
+button {
+    color: #8B4513;
+}
+
+h1 {
+    color: #5D4037;
+    text-align: center;
+    font-style: initial;
+}
+
+card {
+    align-items: center;
+}

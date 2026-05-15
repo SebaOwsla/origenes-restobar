@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // ✅ NUEVO
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ThemeToggle from "../components/ThemeToggle";
 import Footer from "../components/Footer";
+
+/* ICONOS */
+import {
+  FaInstagram,
+  FaWhatsapp,
+  FaArrowRight,
+  FaStar,
+} from "react-icons/fa";
 
 /* IMÁGENES */
 import img8361 from "../assets/imagenes/IMG_8361-Mejorado-NR.jpg";
@@ -21,21 +29,10 @@ import img8996 from "../assets/imagenes/IMG_8996-Mejorado-NR.jpg";
 import img9051 from "../assets/imagenes/IMG_9051-Mejorado-NR.jpg";
 import img9054 from "../assets/imagenes/IMG_9054-Mejorado-NR.jpg";
 import img9124 from "../assets/imagenes/IMG_9124-Mejorado-NR.jpg";
-
-/* TIPADO */
-interface Producto {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  imagen: string;
-  categoria: string;
-}
+import diaMadre from "../assets/imagenes/dia-madre.jpg";
+import equipo from "../assets/imagenes/equipo.jpg";
 
 const Home: React.FC = () => {
-  const [productos] = useState<Producto[]>([]);
-
-  /* SLIDER */
   const slides = [
     { src: img8361, alt: "Orígenes - Ambiente" },
     { src: img8398, alt: "Orígenes - Cocina" },
@@ -52,6 +49,11 @@ const Home: React.FC = () => {
     { src: img8996, alt: "Orígenes - Experiencia" },
     { src: img9051, alt: "Orígenes - Ambiente" },
     { src: img9054, alt: "Orígenes - Bar" },
+
+    /* NUEVAS */
+    { src: diaMadre, alt: "Día de la Madre" },
+    { src: equipo, alt: "Equipo Orígenes" },
+
     {
       src: img9124,
       alt: "Orígenes - Cocina",
@@ -62,10 +64,13 @@ const Home: React.FC = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setSlideIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 4000);
-    return () => clearInterval(id);
+    const interval = setInterval(() => {
+      setSlideIndex((prev) =>
+        prev === slides.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, [slides.length]);
 
   return (
@@ -73,110 +78,198 @@ const Home: React.FC = () => {
       <Navbar />
 
       {/* HERO */}
-      <section className="elegant-wrap">
-        <div className="container elegant-card">
-          <h1 className="text-center elegant-title mb-2">
-            Esto es Orígenes RestoBar
+      <section className="hero-premium">
+        <img
+          src={slides[slideIndex].src}
+          alt={slides[slideIndex].alt}
+          className="hero-bg"
+          style={{
+            objectPosition:
+              (slides[slideIndex] as any).position ?? "center center",
+          }}
+        />
+
+        <div className="hero-overlay"></div>
+
+        <div className="container hero-content">
+          <div className="hero-badge animate-fade-up">
+            <FaStar />
+            <span>Experiencia gastronómica premium</span>
+          </div>
+
+          <h1 className="hero-title animate-fade-up delay-1">
+            Bienvenido a <span>Orígenes</span>
           </h1>
-          <p className="text-center elegant-subtitle mb-4">
-            Sabores con identidad. Hechos para compartir.
+
+          <p className="hero-subtitle animate-fade-up delay-2">
+            Cocina de autor, coctelería premium y sabores con identidad.
           </p>
 
-          {/* SLIDER */}
-          <div className="origenes-slider">
-            <button
-              className="origenes-slider__btn origenes-slider__btn--left"
-              onClick={() =>
-                setSlideIndex(
-                  slideIndex === 0 ? slides.length - 1 : slideIndex - 1
-                )
-              }
+          <div className="hero-buttons animate-fade-up delay-2">
+            <Link
+              to="/productos"
+              className="hero-btn hero-btn-primary"
             >
-              ‹
-            </button>
-
-            <div className="origenes-slider__frame">
-              <img
-                src={slides[slideIndex].src}
-                alt={slides[slideIndex].alt}
-                className="origenes-slider__img"
-                style={{
-                  objectPosition:
-                    (slides[slideIndex] as any).position ?? "center center",
-                }}
-              />
-            </div>
-
-            <button
-              className="origenes-slider__btn origenes-slider__btn--right"
-              onClick={() =>
-                setSlideIndex(
-                  slideIndex === slides.length - 1 ? 0 : slideIndex + 1
-                )
-              }
-            >
-              ›
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* HISTORIA / MISIÓN / VISIÓN */}
-      <section className="pb-5">
-        <div className="container">
-
-          {/* ✅ NUEVO: BOTÓN ARRIBA DE HISTORIA (MISMA CARTA) */}
-          <div className="text-center mb-4">
-            <Link to="/productos" className="social-card carta-btn mx-auto">
-              <i className="bi bi-journal-text social-icon" />
-              <span>Ver la carta</span>
+              Ver Carta
+              <FaArrowRight />
             </Link>
 
-
+            <a
+              href="https://wa.me/56966475903"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-btn hero-btn-secondary"
+            >
+              <FaWhatsapp />
+              Reservar Mesa
+            </a>
           </div>
+        </div>
+      </section>
 
-          {/* HISTORIA */}
-          <div className="text-center mb-5">
-            <h2 className="section-title mb-3">Historia</h2>
-            <div className="section-box historia-box mx-auto">
-              <p className="mb-0" style={{ color: "var(--muted)" }}>
-                Orígenes nace en el corazón de San José de Maipo, inspirado en
-                nuestras raíces y en el camino que cada uno de nosotros ha
-                recorrido. Creemos que la cocina es memoria, identidad y
-                encuentro. Por eso cuidamos cada detalle de nuestras
-                preparaciones, respetando la tradición que nos formó, pero
-                atreviéndonos a innovar con nuevos sabores y técnicas. Somos un
-                resto bar donde lo clásico y lo moderno conviven, donde cada
-                plato cuenta una historia y cada copa acompaña un momento. En
-                Orígenes honramos de dónde venimos, para crear experiencias que
-                se disfrutan hoy.
-              </p>
+      {/* GALERÍA */}
+      <section className="gallery-section">
+        <div className="container">
+          <h2 className="section-title text-center mb-5 animate-fade-up">
+            Nuestra experiencia
+          </h2>
+
+          <div className="gallery-grid">
+
+            {/* PRIMERAS 4 */}
+            {slides.slice(0, 4).map((img, i) => (
+              <div
+                className="gallery-card"
+                key={i}
+                style={{
+                  animationDelay: `${i * 0.15}s`,
+                }}
+              >
+                <img src={img.src} alt={img.alt} />
+
+                <div className="gallery-overlay">
+                  <span>{img.alt}</span>
+                </div>
+              </div>
+            ))}
+
+            {/* DÍA DE LA MADRE */}
+            <div
+              className="gallery-card"
+              style={{
+                animationDelay: "0.7s",
+              }}
+            >
+              <img
+                src={diaMadre}
+                alt="Día de la Madre"
+              />
+
+              <div className="gallery-overlay">
+                <span>Día de la Madre</span>
+              </div>
             </div>
-          </div>
 
-          {/* MISIÓN Y VISIÓN */}
+            {/* EQUIPO ORÍGENES */}
+            <div
+              className="gallery-card"
+              style={{
+                animationDelay: "0.8s",
+              }}
+            >
+              <img
+                src={equipo}
+                alt="Equipo Orígenes"
+              />
+
+              <div className="gallery-overlay">
+                <span>Equipo Orígenes</span>
+              </div>
+            </div>
+
+            {/* EXPERIENCIA */}
+            <div
+              className="gallery-card"
+              style={{
+                animationDelay: "0.9s",
+              }}
+            >
+              <img
+                src={slides[4].src}
+                alt={slides[4].alt}
+              />
+
+              <div className="gallery-overlay">
+                <span>Experiencia Premium</span>
+              </div>
+            </div>
+
+            {/* COCTELERÍA */}
+            <div
+              className="gallery-card"
+              style={{
+                animationDelay: "1s",
+              }}
+            >
+              <img
+                src={slides[5].src}
+                alt={slides[5].alt}
+              />
+
+              <div className="gallery-overlay">
+                <span>Coctelería</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* HISTORIA */}
+      <section className="pb-5">
+        <div className="container">
+          <div className="premium-box animate-fade-up">
+            <h2 className="section-title mb-4 text-center">
+              Nuestra Historia
+            </h2>
+
+            <p className="premium-text">
+              Orígenes nace en el corazón de San José de Maipo inspirado
+              en nuestras raíces, en los sabores auténticos y en la pasión
+              por crear experiencias memorables.
+            </p>
+
+            <p className="premium-text">
+              Fusionamos tradición y modernidad en cada plato, en cada
+              copa y en cada rincón de nuestro espacio.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* MISIÓN Y VISIÓN */}
+      <section className="pb-5">
+        <div className="container">
           <div className="row g-4">
-            <div className="col-12 col-lg-6">
-              <h3 className="h5 text-center section-title">Misión</h3>
-              <div className="section-box">
-                <p className="mb-0" style={{ color: "var(--muted)" }}>
-                  Brindar una experiencia gastronómica auténtica en San José de
-                  Maipo, elaborando cada plato con dedicación y respeto por
-                  nuestras raíces, combinando la tradición culinaria con la
-                  innovación y ofreciendo un espacio acogedor donde la comida y
-                  el encuentro se convierten en momentos memorables.
+            <div className="col-lg-6">
+              <div className="info-card animate-left">
+                <h3>Misión</h3>
+
+                <p>
+                  Brindar una experiencia gastronómica auténtica,
+                  combinando tradición culinaria con innovación y atención
+                  excepcional.
                 </p>
               </div>
             </div>
 
-            <div className="col-12 col-lg-6">
-              <h3 className="h5 text-center section-title">Visión</h3>
-              <div className="section-box">
-                <p className="mb-0" style={{ color: "var(--muted)" }}>
-                  Ser un referente gastronómico en la zona cordillerana,
-                  reconocido por la calidad de nuestras preparaciones y el
-                  respeto por la identidad local, sin perder la esencia que
-                  define a Orígenes.
+            <div className="col-lg-6">
+              <div className="info-card animate-right">
+                <h3>Visión</h3>
+
+                <p>
+                  Ser un referente gastronómico de la zona cordillerana,
+                  reconocido por nuestra calidad y esencia única.
                 </p>
               </div>
             </div>
@@ -184,20 +277,21 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ✅ NUEVO: REDES SOCIALES + OPINIONES GOOGLE (IFRAME) */}
+      {/* REDES */}
       <section className="pb-5">
         <div className="container text-center">
-          <h2 className="section-title mb-4">Conéctate con Orígenes</h2>
+          <h2 className="section-title mb-5">
+            Conecta con nosotros
+          </h2>
 
-          {/* REDES */}
-          <div className="d-flex justify-content-center gap-4 mb-4 flex-wrap">
+          <div className="social-grid">
             <a
               href="https://www.instagram.com/origenes.restobar?igsh=cnY4M3BueWN5ejRz"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-card"
+              className="social-premium"
             >
-              <i className="bi bi-instagram social-icon"></i>
+              <FaInstagram />
               <span>@origenes.restobar</span>
             </a>
 
@@ -205,39 +299,27 @@ const Home: React.FC = () => {
               href="https://wa.me/56966475903"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-card"
+              className="social-premium"
             >
-              <i className="bi bi-whatsapp social-icon"></i>
-              <span>Reservas por WhatsApp</span>
+              <FaWhatsapp />
+              <span>Reservas WhatsApp</span>
             </a>
           </div>
 
-          <div
-            className="section-box mx-auto"
-            style={{ maxWidth: "900px", padding: 0, overflow: "hidden" }}
-          >
+          {/* MAPA */}
+          <div className="map-box mt-5">
             <iframe
               src="https://www.google.com/maps?q=Or%C3%ADgenes%20RestoBar%20San%20Jos%C3%A9%20de%20Maipo&output=embed"
               width="100%"
               height="450"
               style={{ border: 0 }}
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Opiniones Google - Orígenes RestoBar"
+              title="Mapa Orígenes"
             />
           </div>
-
-          <a
-            href="https://share.google/esvbRq9WHfGbAPSGg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="elegant-link"
-            style={{ marginTop: 14, display: "inline-block" }}
-          >
-            Ver reseñas en Google
-          </a>
         </div>
       </section>
+
       <ThemeToggle />
       <Footer />
     </div>
